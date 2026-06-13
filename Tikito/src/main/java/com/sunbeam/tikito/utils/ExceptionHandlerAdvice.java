@@ -1,4 +1,4 @@
-package com.sunbeam.tikito;
+package com.sunbeam.tikito.utils;
 
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
