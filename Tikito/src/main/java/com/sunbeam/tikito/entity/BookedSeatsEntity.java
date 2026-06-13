@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+//@ToString(exclude = "")
 @Table(name="booked_seats")
 public class BookedSeatsEntity 
 {
@@ -29,9 +30,9 @@ public class BookedSeatsEntity
 	@JoinColumn(name="booking_id")
 	private BookingEntity booking;
 	
-	//@ManyToAny
-	//@JoinColumn(name="seat_id")
-	//private Seat seat;
+	@ManyToOne
+	@JoinColumn(name="seat_id")
+	private SeatEntity seat;
 	
 	private LocalDateTime createdAt;
 	
