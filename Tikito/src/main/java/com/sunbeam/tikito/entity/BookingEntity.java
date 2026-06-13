@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+//@ToString(exclude = "")
 @Entity
 @Data
 @AllArgsConstructor
@@ -31,9 +32,9 @@ public class BookingEntity
 	@JoinColumn(name="user_id")
 	private UserEntity user;
 	
-	//@ManyToOne
-	//@JoinColumn(name="show_id")
-	//private ShowEntity show;
+	@ManyToOne
+	@JoinColumn(name="show_id")
+	private ShowEntity show;
 	
 	@OneToMany(mappedBy="booking")
 	private List<BookedSeatsEntity> bookedSeats;
