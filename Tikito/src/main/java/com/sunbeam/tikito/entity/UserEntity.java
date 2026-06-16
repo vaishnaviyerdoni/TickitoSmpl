@@ -15,7 +15,7 @@ package com.sunbeam.tikito.entity;
 
 	
 	@Entity
-	@Table(name = "Users")
+	@Table(name = "users")
     @NoArgsConstructor
     @AllArgsConstructor
 	@Data
@@ -24,30 +24,38 @@ package com.sunbeam.tikito.entity;
 	    
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    @Column(name="user_id")
 	    private Long userId;
-
-	    @Column(nullable = false)
+	   
+	    @Column(name = "first_name", nullable = false)
 	    private String firstName;
 
-	    @Column(nullable = false)
+	    @Column(name = "last_name", nullable = false)
 	    private String lastName;
+	    
+	    @Column(name = "age")
+	    private Integer age;
 
-	    @Column(unique = true, nullable = false)
+	    @Column(name = "email", unique = true, nullable = false)
 	    private String email;
 
-	    @Column(nullable = false)
+
+	    @Column(name = "password", nullable = false)
 	    private String password;
 
-	    @Column(unique = true, nullable = false)
+	    @Column(name = "phone", unique = true, nullable = false)
 	    private String phone;
 
-	    @Column(nullable = false)
+	    @Column(name = "role", nullable = false)
 	    private String role;
-
+        
+	    @Column(name = "image_name")
 	    private String imageName;
-
+        
+	    @Column(name = "created_at", updatable = false)
 	    private LocalDateTime createdAt;
-
+        
+	    @Column(name = "updated_at")
 	    private LocalDateTime updatedAt;
 	    
 	    @PrePersist
