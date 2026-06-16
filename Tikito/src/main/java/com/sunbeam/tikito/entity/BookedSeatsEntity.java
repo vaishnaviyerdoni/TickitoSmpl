@@ -11,6 +11,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 //@ToString(exclude = "")
-@Table(name="booked_seats")
+@Table(name="booked_seats",
+	   uniqueConstraints = 
+	   {
+			@UniqueConstraint(name = "uk_show_seat",
+							  columnNames = {"show_id", "seat_id"})
+	   })
 public class BookedSeatsEntity 
 {
 	@Id
@@ -35,6 +41,10 @@ public class BookedSeatsEntity
 	@ManyToOne
 	@JoinColumn(name="seat_id")
 	private SeatEntity seat;
+	
+	@ManyToOne
+	@JoinColumn(name="show_id")
+	private ShowEntity show;
 	
 	private LocalDateTime createdAt;
 	
