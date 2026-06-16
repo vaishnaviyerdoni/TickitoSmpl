@@ -2,8 +2,14 @@ package com.sunbeam.tikito.entity;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import com.sunbeam.tikito.enums.BookingStatus;
+import com.sunbeam.tikito.enums.PaymentStatus;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,11 +21,14 @@ import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 //@ToString(exclude = "")
 @Entity
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="bookings")
@@ -44,8 +53,13 @@ public class BookingEntity
 	@Column(name="total_amt")
 	private double totalAmt;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(name="payment_status")
-	private boolean paymentStatus;
+	private PaymentStatus paymentStatus;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name="booking_status")
+	private BookingStatus bookingStatus;
 	
 	@Column(name="created_at")
 	private LocalDateTime createdAt;
