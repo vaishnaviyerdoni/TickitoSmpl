@@ -1,6 +1,5 @@
 package com.sunbeam.tikito.dto;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,10 +9,11 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-//request dto
-public class TicketBookingDto
+public class BookedSeatDto 
 {
-	private Long userId;
+	private Long bookedSeatsId;
+	private Long bookingId;
+	private Long seatId;
 	private Long showId;
-	private List<Long> seatIds; 
+	
 }
