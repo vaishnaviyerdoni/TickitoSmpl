@@ -13,13 +13,13 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-//reponse dto
-public class TicketBookedDto
+public class BookingDto 
 {
 	private Long bookingId;
+	private Long userId;
 	private Long showId;
-	private List<Long> seatNums;
-	private Double totalAmt;
+	private List<Long> bookedSeatsIds;
+	private double totalAmt;
 	private PaymentStatus paymentStatus;
 	private BookingStatus bookingStatus;
 }
