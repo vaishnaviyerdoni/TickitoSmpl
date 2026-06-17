@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.sunbeam.tikito.entity.BookedSeatsEntity;
 
-public interface BookedSeatsDao extends JpaRepository<Integer, BookedSeatsEntity>
+public interface BookedSeatsDao extends JpaRepository<BookedSeatsEntity, Long>
 {
 	List<BookedSeatsEntity> findByBookingBookingId(int bookingId);
 

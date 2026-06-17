@@ -2,10 +2,8 @@ package com.sunbeam.tikito.entity;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
 import com.sunbeam.tikito.enums.BookingStatus;
 import com.sunbeam.tikito.enums.PaymentStatus;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -20,12 +18,12 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
-//@ToString(exclude = "")
+@ToString(exclude = "bookedSeats")
 @Entity
 @Setter
 @Getter
@@ -37,28 +35,28 @@ public class BookingEntity
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="booking_id", nullable=false)
-	private int bookingId;
+	private Long bookingId;
 	
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="user_id", nullable=false)
 	private UserEntity user;
 	
 	@ManyToOne
-	@JoinColumn(name="show_id")
+	@JoinColumn(name="show_id", nullable=false)
 	private ShowEntity show;
 	
 	@OneToMany(mappedBy="booking")
 	private List<BookedSeatsEntity> bookedSeats;
 	
-	@Column(name="total_amt")
+	@Column(name="total_amt", nullable=false)
 	private double totalAmt;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name="payment_status")
+	@Column(name="payment_status", nullable=false)
 	private PaymentStatus paymentStatus;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name="booking_status")
+	@Column(name="booking_status", nullable=false)
 	private BookingStatus bookingStatus;
 	
 	@Column(name="created_at")
