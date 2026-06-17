@@ -1,6 +1,5 @@
 package com.sunbeam.tikito.dto;
 
-import java.util.List;
 import com.sunbeam.tikito.enums.BookingStatus;
 import com.sunbeam.tikito.enums.PaymentStatus;
 import lombok.AllArgsConstructor;
@@ -13,13 +12,9 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-//reponse dto
-public class TicketBookedDto
+public class CancelTicketDto
 {
 	private Long bookingId;
-	private Long showId;
-	private List<Long> seatNums;
-	private Double totalAmt;
-	private PaymentStatus paymentStatus;
 	private BookingStatus bookingStatus;
+	private PaymentStatus paymentStatus;
 }
