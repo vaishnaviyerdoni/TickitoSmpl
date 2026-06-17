@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.sunbeam.tikito.entity.VenueEntity;
 
-public interface VenueDaoImpl extends JpaRepository<VenueEntity, Integer>  {
+//changed Integer to Long
+public interface VenueDaoImpl extends JpaRepository<VenueEntity, Long>  {
 
 }

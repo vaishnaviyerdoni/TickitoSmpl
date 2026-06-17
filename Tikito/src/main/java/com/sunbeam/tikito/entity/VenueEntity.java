@@ -30,7 +30,7 @@ public class VenueEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "venue_id")
-	private int id;
+	private Long venueId; //changed id to venueId
 
 	private String name;
 

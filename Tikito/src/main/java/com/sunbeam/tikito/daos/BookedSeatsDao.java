@@ -8,13 +8,13 @@ import com.sunbeam.tikito.entity.BookedSeatsEntity;
 
 public interface BookedSeatsDao extends JpaRepository<BookedSeatsEntity, Long>
 {
-	List<BookedSeatsEntity> findByBookingBookingId(int bookingId);
+	List<BookedSeatsEntity> findByBookingBookingId(Long bookingId);
 
-	void deleteByBookingBookingId(int bookingId);
+	void deleteByBookingBookingId(Long bookingId);
 
-	boolean existsByShowShowIdAndSeatSeatId(int showId, int SeatId);
+	boolean existsByShowShowIdAndSeatSeatId(Long showId, Long SeatId);
 
-	List<BookedSeatsEntity> findByShowShowIdAndSeatSeatIdIn(int showId, int seatId);
+	List<BookedSeatsEntity> findByShowShowIdAndSeatSeatIdIn(Long showId, List<Long> seatIds);
 
-	int findByShowShowId(int showId);
+	List<BookedSeatsEntity> findByShowShowId(Long showId);
 }
