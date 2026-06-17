@@ -13,14 +13,17 @@ import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-//@ToString(exclude = "")
+@ToString(exclude = {"booking", "seat", "show"})
 @Table(name="booked_seats",
 	   uniqueConstraints = 
 	   {
@@ -30,20 +33,20 @@ import lombok.NoArgsConstructor;
 public class BookedSeatsEntity 
 {
 	@Id
-	@Column(name="booked_seat_id")
+	@Column(name="booked_seat_id", nullable=false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int bookedSeatsId;
+	private Long bookedSeatsId;
 	
 	@ManyToOne
-	@JoinColumn(name="booking_id")
+	@JoinColumn(name="booking_id", nullable=false)
 	private BookingEntity booking;
 	
 	@ManyToOne
-	@JoinColumn(name="seat_id")
+	@JoinColumn(name="seat_id", nullable=false)
 	private SeatEntity seat;
 	
 	@ManyToOne
-	@JoinColumn(name="show_id")
+	@JoinColumn(name="show_id", nullable=false)
 	private ShowEntity show;
 	
 	private LocalDateTime createdAt;
