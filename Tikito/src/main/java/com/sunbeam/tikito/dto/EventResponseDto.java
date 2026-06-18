@@ -18,7 +18,7 @@ public class EventResponseDto {
 
     private String eventDescription;
 
-    private Integer eventDurationMin;
+    private Long eventDurationMin;
 
     private Integer ageRestriction;
 

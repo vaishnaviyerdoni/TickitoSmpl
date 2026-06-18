@@ -14,7 +14,7 @@ public class EventRequestDto {
 
     private String eventDescription;
 
-    private Integer eventDurationMin;
+    private Long eventDurationMin;
 
     private Integer ageRestriction;
 
