@@ -30,18 +30,7 @@ CREATE TABLE bookings(
    
 );
 
-CREATE TABLE booked_seats (
-    booked_seat_id INT PRIMARY KEY AUTO_INCREMENT,
-    booking_id INT NOT NULL,
-    show_id INT NOT NULL,
-    seat_id INT NOT NULL,
 
-    CONSTRAINT uk_show_seat UNIQUE (show_id, seat_id),
-
-    FOREIGN KEY (booking_id) REFERENCES booking(booking_id),
-    FOREIGN KEY (show_id) REFERENCES show(show_id),
-    FOREIGN KEY (seat_id) REFERENCES seat(seat_id)
-);
 
 CREATE TABLE seats(
     seat_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -85,7 +74,7 @@ CREATE TABLE shows(
     show_date DATE,
     show_start_time TIME,
     show_end_time TIME,
-    show_language VARCHAR(15),
+   show_language VARCHAR(15),
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                ON UPDATE CURRENT_TIMESTAMP
@@ -119,6 +108,14 @@ event_poster_name VARCHAR(250),
          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE booked_seats (
+    booked_seat_id INT PRIMARY KEY AUTO_INCREMENT,
+    booking_id INT NOT NULL,
+    show_id INT NOT NULL,
+    seat_id INT NOT NULL,
+    CONSTRAINT uk_show_seat UNIQUE (show_id, seat_id)
 );
 
 
