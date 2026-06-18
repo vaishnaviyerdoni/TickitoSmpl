@@ -32,18 +32,9 @@ public class ShowEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "show_id")
 	private Long showId; //changed id to show Id // ok
-<<<<<<< HEAD
-	
-	@Column(name = "show_language")
-=======
 
 	@Column(name="show_language")
->>>>>>> origin/main
 	private String language;
-	
-	
-	@Column(name="price")
-	private Double price;
 
 	@Column(name = "is_eighteen_plus")
 	private boolean isEighteenPlus;
@@ -70,6 +61,9 @@ public class ShowEntity {
 
 	@Column(name = "updated_at")
 	private LocalDateTime updatedAt;
+	
+	@Column(name = "price", nullable=false)
+	private Double price;
 
 	@PrePersist
 	public void onCreate() {
