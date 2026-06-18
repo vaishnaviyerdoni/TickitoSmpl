@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sunbeam.tikito.serviceimpl.VenueService;
+import com.sunbeam.tikito.services.VenueService;
 
 @RestController
 @RequestMapping("/api/venue")

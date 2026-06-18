@@ -1,10 +1,11 @@
-package com.sunbeam.tikito.services;
+package com.sunbeam.tikito.serviceimpl;
 
 import org.springframework.stereotype.Service;
 
 import com.sunbeam.tikito.dto.CancelTicketDto;
 import com.sunbeam.tikito.dto.TicketBookedDto;
 import com.sunbeam.tikito.dto.TicketBookingDto;
+import com.sunbeam.tikito.services.BookingService;
 
 import jakarta.transaction.Transactional;
 
