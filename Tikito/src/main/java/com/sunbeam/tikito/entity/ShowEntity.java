@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -54,10 +56,12 @@ public class ShowEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "venue_id")
+	@JsonIgnore
 	private VenueEntity venue;
 
 	@ManyToOne
 	@JoinColumn(name = "event_id")
+	@JsonIgnore
 	private EventEntity event ;
 
 	@Column(name = "created_at")

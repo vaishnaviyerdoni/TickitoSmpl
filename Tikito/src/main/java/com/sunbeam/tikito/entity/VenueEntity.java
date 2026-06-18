@@ -42,9 +42,9 @@ public class VenueEntity {
 	private Integer seatCapacity;
 
 	@Column(name = "are_facilities_available")
-	private boolean areFacilitiesAvailable;
+	private boolean isAreFacilitiesAvailable;
 
-	@OneToMany(mappedBy = "venue")
+	@OneToMany(mappedBy = "venue" , fetch = FetchType.LAZY)
 	private List<SeatEntity> seatList;
 
 	@OneToMany(mappedBy = "venue", fetch = FetchType.LAZY)
