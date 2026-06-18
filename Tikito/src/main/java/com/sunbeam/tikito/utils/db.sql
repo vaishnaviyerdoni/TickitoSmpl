@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS tikito_db;
-CREATE DATABASE tikito_db;
+-- DROP DATABASE IF EXISTS tikito_db;
+-- CREATE DATABASE tikito_db;
 USE tikito_db;
 
 CREATE TABLE users(
@@ -30,7 +30,18 @@ CREATE TABLE bookings(
    
 );
 
+CREATE TABLE booked_seats (
+    booked_seat_id INT PRIMARY KEY AUTO_INCREMENT,
+    booking_id INT NOT NULL,
+    show_id INT NOT NULL,
+    seat_id INT NOT NULL,
 
+    CONSTRAINT uk_show_seat UNIQUE (show_id, seat_id)
+
+    -- FOREIGN KEY (booking_id) REFERENCES booking(booking_id),
+    -- FOREIGN KEY (show_id) REFERENCES show(show_id),
+    -- FOREIGN KEY (seat_id) REFERENCES seat(seat_id)
+);
 
 CREATE TABLE seats(
     seat_id INT PRIMARY KEY AUTO_INCREMENT,
