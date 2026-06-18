@@ -30,11 +30,13 @@ public class VenueEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "venue_id")
-	private Long venueId; //changed id to venueId
+	private Long venueId; //changed id to venueId // ok
 
-	private String name;
+	@Column(name="venue_name")
+	private String venueName;
 
-	private String address;
+	@Column(name="venue_address")
+	private String venueAddress;
 
 	@Column(name = "are_facilities_available")
 	private boolean areFacilitiesAvailable;
