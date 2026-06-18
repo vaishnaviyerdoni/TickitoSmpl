@@ -31,7 +31,7 @@ public class ShowEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "show_id")
-	private int id;
+	private Long showId; //changed id to show Id // ok
 
 	private String language;
 
@@ -51,9 +51,9 @@ public class ShowEntity {
 	@JoinColumn(name = "venue_id")
 	private VenueEntity venue;
 
-//	@ManyToOne
-//	@JoinColumn(name = "event_id")
-//	private EventEntity eventId ;
+	@ManyToOne
+	@JoinColumn(name = "event_id")
+	private EventEntity event ;
 
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;

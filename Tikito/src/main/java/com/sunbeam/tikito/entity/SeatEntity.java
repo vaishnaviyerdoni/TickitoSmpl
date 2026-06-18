@@ -26,7 +26,7 @@ public class SeatEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "seat_id")
-	private int id;
+	private Long seatId; //changed id to seatId // ok
 
 	@ManyToOne
 	@JoinColumn(name = "venue_id")
