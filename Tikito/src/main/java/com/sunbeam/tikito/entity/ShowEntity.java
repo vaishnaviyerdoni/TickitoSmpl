@@ -37,10 +37,6 @@ public class ShowEntity {
 
 	@Column(name="show_language")
 	private String language;
-	
-	
-	@Column(name="price")
-	private Double price;
 
 	@Column(name = "is_eighteen_plus")
 	private boolean isEighteenPlus;
@@ -69,6 +65,9 @@ public class ShowEntity {
 
 	@Column(name = "updated_at")
 	private LocalDateTime updatedAt;
+	
+	@Column(name = "price", nullable=false)
+	private Double price;
 
 	@PrePersist
 	public void onCreate() {

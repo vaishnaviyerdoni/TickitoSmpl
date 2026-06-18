@@ -2,6 +2,8 @@ package com.sunbeam.tikito.entity;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
+
 import com.sunbeam.tikito.enums.BookingStatus;
 import com.sunbeam.tikito.enums.PaymentStatus;
 import jakarta.persistence.Column;
@@ -74,5 +76,34 @@ public class BookingEntity
 	@PreUpdate
 	public void onUpdate() {
 		updatedAt = LocalDateTime.now();
+	}
+	
+	
+
+	public BookingEntity(Long bookingId, UserEntity user, ShowEntity show, List<BookedSeatsEntity> bookedSeats,
+			double totalAmt, PaymentStatus paymentStatus, BookingStatus bookingStatus)
+	{
+		this.bookingId = bookingId;
+		this.user = user;
+		this.show = show;
+		this.bookedSeats = bookedSeats;
+		this.totalAmt = totalAmt;
+		this.paymentStatus = paymentStatus;
+		this.bookingStatus = bookingStatus;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(bookingId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof BookingEntity))
+			return false;
+		BookingEntity other = (BookingEntity) obj;
+		return Objects.equals(bookingId, other.bookingId);
 	}
 }
