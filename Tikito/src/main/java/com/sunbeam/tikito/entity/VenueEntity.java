@@ -35,6 +35,9 @@ public class VenueEntity {
 	private String name;
 
 	private String address;
+	
+	@Column(name = "seat_capacity")
+	private Integer seatCapacity;
 
 	@Column(name = "are_facilities_available")
 	private boolean areFacilitiesAvailable;
