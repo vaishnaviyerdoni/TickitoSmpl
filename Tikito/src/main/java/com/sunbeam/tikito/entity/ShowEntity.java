@@ -33,7 +33,12 @@ public class ShowEntity {
 	@Column(name = "show_id")
 	private Long showId; //changed id to show Id // ok
 
+	@Column(name="show_language")
 	private String language;
+	
+	
+	@Column(name="price")
+	private Double price;
 
 	@Column(name = "is_eighteen_plus")
 	private boolean isEighteenPlus;
