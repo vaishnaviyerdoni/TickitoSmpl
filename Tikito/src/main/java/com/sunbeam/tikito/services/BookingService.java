@@ -1,5 +1,11 @@
 package com.sunbeam.tikito.services;
 
-public interface BookingService {
+import com.sunbeam.tikito.dto.CancelTicketDto;
+import com.sunbeam.tikito.dto.TicketBookedDto;
+import com.sunbeam.tikito.dto.TicketBookingDto;
 
+public interface BookingService
+{
+	TicketBookedDto bookTicket(TicketBookingDto dto);
+	CancelTicketDto cancalTicket(long bookingId);
 }
