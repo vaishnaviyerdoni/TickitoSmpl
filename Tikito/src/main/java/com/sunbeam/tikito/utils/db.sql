@@ -2,13 +2,11 @@ DROP DATABASE IF EXISTS tikito_db;
 CREATE DATABASE tikito_db;
 USE tikito_db;
 
-
-
 CREATE TABLE users(
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(80),
     last_name VARCHAR(80),
-    age INT,
+    birth_date LocalDate,
     email VARCHAR(80) UNIQUE,
     image_name VARCHAR(80),
     password VARCHAR(200),
@@ -24,7 +22,8 @@ CREATE TABLE bookings(
     user_id INT,
     show_id INT,
     total_amt DECIMAL(10,2),
-    payment_status boolean NOT NULL,
+    payment_status VARCHAR(25),
+    booking_status VARCHAR(50),
      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                ON UPDATE CURRENT_TIMESTAMP
@@ -33,12 +32,15 @@ CREATE TABLE bookings(
 
 CREATE TABLE booked_seats (
     booked_seat_id INT PRIMARY KEY AUTO_INCREMENT,
-    booking_id INT,
-    seat_id INT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-               ON UPDATE CURRENT_TIMESTAMP
-   
+    booking_id INT NOT NULL,
+    show_id INT NOT NULL,
+    seat_id INT NOT NULL,
+
+    CONSTRAINT uk_show_seat UNIQUE (show_id, seat_id),
+
+    FOREIGN KEY (booking_id) REFERENCES booking(booking_id),
+    FOREIGN KEY (show_id) REFERENCES show(show_id),
+    FOREIGN KEY (seat_id) REFERENCES seat(seat_id)
 );
 
 CREATE TABLE seats(
@@ -76,6 +78,7 @@ CREATE TABLE shows(
     show_id INT PRIMARY KEY AUTO_INCREMENT,
     venue_id INT,
     event_id INT,
+    price DECIMAL(4,2),
     is_eighteen_plus boolean NOT NULL,
     show_date DATE,
     show_start_time TIME,
@@ -90,6 +93,7 @@ CREATE TABLE venues(
     venue_id INT PRIMARY KEY AUTO_INCREMENT,
     venue_name VARCHAR(80),
     venue_address VARCHAR(250),
+    seat_capacity INT,
     are_facilities_available boolean NOT NULL,
          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

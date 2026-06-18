@@ -1,6 +1,7 @@
 package com.sunbeam.tikito.entity;
 
-    import java.time.LocalDateTime;
+    import java.time.LocalDate;
+import java.time.LocalDateTime;
 	import jakarta.persistence.Column;
 	import jakarta.persistence.Entity;
 	import jakarta.persistence.GeneratedValue;
@@ -33,8 +34,8 @@ package com.sunbeam.tikito.entity;
 	    @Column(name = "last_name", nullable = false)
 	    private String lastName;
 	    
-	    @Column(name = "age")
-	    private Integer age;
+	    @Column(name = "birth_date")
+	    private LocalDate birthdate;
 
 	    @Column(name = "email", unique = true, nullable = false)
 	    private String email;
