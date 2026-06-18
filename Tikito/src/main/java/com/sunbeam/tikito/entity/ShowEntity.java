@@ -32,9 +32,18 @@ public class ShowEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "show_id")
 	private Long showId; //changed id to show Id // ok
+<<<<<<< HEAD
 	
 	@Column(name = "show_language")
+=======
+
+	@Column(name="show_language")
+>>>>>>> origin/main
 	private String language;
+	
+	
+	@Column(name="price")
+	private Double price;
 
 	@Column(name = "is_eighteen_plus")
 	private boolean isEighteenPlus;
