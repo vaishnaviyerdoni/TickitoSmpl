@@ -1,4 +1,4 @@
-package com.sunbeam.tikito.serviceimpl;
+package com.sunbeam.tikito.services;
 
 import org.springframework.stereotype.Service;
 
