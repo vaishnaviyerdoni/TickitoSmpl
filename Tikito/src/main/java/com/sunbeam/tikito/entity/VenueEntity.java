@@ -32,8 +32,10 @@ public class VenueEntity {
 	@Column(name = "venue_id")
 	private Long venueId; //changed id to venueId // ok
 
+	@Column(name = "venue_name")
 	private String name;
 
+	@Column(name = "venue_address")
 	private String address;
 	
 	@Column(name = "seat_capacity")
