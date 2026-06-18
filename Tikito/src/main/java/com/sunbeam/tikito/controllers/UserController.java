@@ -9,10 +9,10 @@ package com.sunbeam.tikito.controllers;
 		import org.springframework.web.bind.annotation.RequestMapping;
 		import org.springframework.web.bind.annotation.RestController;
 		import com.sunbeam.tikito.dto.UserDto;
-		import com.sunbeam.tikito.services.UserServiceImpl;
-        import com.sunbeam.tikito.utils.Resp;
+import com.sunbeam.tikito.serviceimpl.UserServiceImpl;
+import com.sunbeam.tikito.utils.Resp;
 
-//		@RequestMapping("/users")
+		@RequestMapping("/users")
 		@RestController
 		public class UserController {
 
