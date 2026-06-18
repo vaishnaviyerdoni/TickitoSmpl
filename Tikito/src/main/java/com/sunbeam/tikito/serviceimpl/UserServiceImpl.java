@@ -1,4 +1,4 @@
-package com.sunbeam.tikito.services;
+package com.sunbeam.tikito.serviceimpl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.sunbeam.tikito.daos.UserDao;
 import com.sunbeam.tikito.dto.UserDto;
 import com.sunbeam.tikito.entity.UserEntity;
+import com.sunbeam.tikito.services.UserService;
+
 import jakarta.transaction.Transactional;
 	
 @Transactional	
