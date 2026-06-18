@@ -33,6 +33,7 @@ public class ShowEntity {
 	@Column(name = "show_id")
 	private Long showId; //changed id to show Id // ok
 
+	@Column(name = "show_language")
 	private String language;
 
 	@Column(name = "is_eighteen_plus")
@@ -60,6 +61,9 @@ public class ShowEntity {
 
 	@Column(name = "updated_at")
 	private LocalDateTime updatedAt;
+	
+	@Column(name = "price", nullable=false)
+	private Double price;
 
 	@PrePersist
 	public void onCreate() {

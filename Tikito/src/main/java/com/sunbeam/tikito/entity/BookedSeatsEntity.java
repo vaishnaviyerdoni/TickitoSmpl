@@ -63,4 +63,34 @@ public class BookedSeatsEntity
 	public void onUpdate() {
 		updatedAt = LocalDateTime.now();
 	}
+
+	public BookedSeatsEntity(Long bookedSeatsId, BookingEntity booking, SeatEntity seat, ShowEntity show) {
+		this.bookedSeatsId = bookedSeatsId;
+		this.booking = booking;
+		this.seat = seat;
+		this.show = show;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bookedSeatsId == null) ? 0 : bookedSeatsId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof BookedSeatsEntity))
+			return false;
+		BookedSeatsEntity other = (BookedSeatsEntity) obj;
+		if (bookedSeatsId == null) {
+			if (other.bookedSeatsId != null)
+				return false;
+		} else if (!bookedSeatsId.equals(other.bookedSeatsId))
+			return false;
+		return true;
+	}
 }
