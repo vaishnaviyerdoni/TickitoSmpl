@@ -6,7 +6,7 @@ CREATE TABLE users(
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(80),
     last_name VARCHAR(80),
-    birth_date LocalDate,
+    birth_date Date,
     email VARCHAR(80) UNIQUE,
     image_name VARCHAR(80),
     password VARCHAR(200),
@@ -64,15 +64,17 @@ CREATE TABLE revues(
 
 CREATE TABLE events(
     event_id INT PRIMARY KEY AUTO_INCREMENT,
-    event_name VARCHAR(80),
-    event_genre VARCHAR(80),
-    event_rating DECIMAL(4,2),
-    event_duration INT,
+    event_name VARCHAR(100) NOT NULL,
+    event_type  VARCHAR(100) NOT NULL,
     event_description TEXT,
-   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    event_duration_min INT,
+    age_restriction INT,
+    poster_url VARCHAR(500),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                ON UPDATE CURRENT_TIMESTAMP
 );
+
 
 CREATE TABLE shows(
     show_id INT PRIMARY KEY AUTO_INCREMENT,

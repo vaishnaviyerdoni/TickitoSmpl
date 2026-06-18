@@ -31,7 +31,7 @@ public class ShowEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "show_id")
-	private Long showId; //changed id to show Id
+	private Long showId; //changed id to show Id // ok
 
 	private String language;
 
