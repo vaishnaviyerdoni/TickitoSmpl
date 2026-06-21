@@ -1,11 +1,16 @@
 package com.sunbeam.tikito.services;
 
+import java.util.List;
+
 import com.sunbeam.tikito.dto.CancelTicketDto;
 import com.sunbeam.tikito.dto.TicketBookedDto;
 import com.sunbeam.tikito.dto.TicketBookingDto;
+import com.sunbeam.tikito.dto.UserBookingDto;
 
 public interface BookingService
 {
 	TicketBookedDto bookTicket(TicketBookingDto dto);
-	CancelTicketDto cancalTicket(long bookingId);
+	CancelTicketDto cancelTicket(long bookingId, long userId);
+	UserBookingDto getBookingsByUser(long bookingId, long userId);
+	List<UserBookingDto> getAllBookingsByUser(long userId);
 }

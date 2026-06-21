@@ -16,9 +16,11 @@ import com.sunbeam.tikito.dto.BookedSeatDto;
 import com.sunbeam.tikito.dto.CancelTicketDto;
 import com.sunbeam.tikito.dto.TicketBookedDto;
 import com.sunbeam.tikito.dto.TicketBookingDto;
+import com.sunbeam.tikito.dto.UserBookingDto;
 import com.sunbeam.tikito.entity.UserEntity;
 import com.sunbeam.tikito.enums.BookingStatus;
 import com.sunbeam.tikito.enums.PaymentStatus;
+import com.sunbeam.tikito.exceptions.InvalidBookingException;
 import com.sunbeam.tikito.exceptions.InvalidSeatsException;
 import com.sunbeam.tikito.exceptions.ShowNotFoundException;
 import com.sunbeam.tikito.exceptions.UserNotFoundException;
@@ -130,9 +132,124 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public CancelTicketDto cancalTicket(long bookingId) {
-		// TODO Auto-generated method stub
-		return null;
+	public CancelTicketDto cancelTicket(long bookingId, long userId) 
+	{
+		CancelTicketDto cancelledTicket = new CancelTicketDto();
+		Optional<UserEntity> userOptional = userDao.findById(userId);
+		if(!userOptional.isPresent())
+		{
+			throw new UserNotFoundException("User cannot be found");
+		}
+		else
+		{
+			Optional<BookingEntity> optionalBooking = bookingDao.findByBookingIdAndUserUserId(bookingId, userId);
+			if(!optionalBooking.isPresent())
+			{
+				throw new InvalidBookingException("Booking not found");
+			}
+			else
+			{
+				BookingEntity booking = optionalBooking.get();
+				if(booking.getBookingStatus().equals(BookingStatus.CANCELLED))
+				{
+					throw new InvalidBookingException("Ticket booking is already cancelled");
+				}
+				else
+				{
+					booking.setBookingStatus(BookingStatus.CANCELLED);
+					booking.setPaymentStatus(PaymentStatus.REFUNDED);
+					
+					bookingDao.save(booking);
+					bookedSeatDao.deleteByBookingBookingId(bookingId);
+					
+					cancelledTicket = new CancelTicketDto(bookingId, booking.getBookingStatus(), booking.getPaymentStatus());
+				}
+			}
+
+		}
+		
+		return cancelledTicket;
+	}
+
+	@Override
+	public UserBookingDto getBookingsByUser(long bookingId, long userId) 
+	{
+		UserBookingDto bookingDetails = new UserBookingDto();
+		Optional<UserEntity> optionalUser = userDao.findById(userId);
+		if(!optionalUser.isPresent())
+		{
+			throw new UserNotFoundException("User is not available");
+		}
+		else
+		{
+			Optional<BookingEntity> optionalBooking = bookingDao.findByBookingIdAndUserUserId(bookingId, userId);
+			if(!optionalBooking.isPresent())
+			{
+				throw new InvalidBookingException("Booking unavailable");
+			}
+			else
+			{
+				BookingEntity booking = optionalBooking.get();
+				
+				List<String> seatNums = new ArrayList<>();
+				List<BookedSeatsEntity> seats = booking.getBookedSeats();
+				for(BookedSeatsEntity bs : seats)
+				{
+					seatNums.add(bs.getSeat().getSeatNo());
+				}
+				
+				bookingDetails = new UserBookingDto(booking.getBookingId(), 
+													booking.getShow().getShowId(), 
+													booking.getTotalAmt(), 
+													seatNums, 
+													booking.getPaymentStatus(), 
+													booking.getBookingStatus(), 
+													booking.getCreatedAt());
+				
+			}
+		}
+		
+		return bookingDetails;
+	}
+
+	@Override
+	public List<UserBookingDto> getAllBookingsByUser(long userId)
+	{
+		UserBookingDto bookingDetails = new UserBookingDto();
+		List<UserBookingDto> bookingList = new ArrayList<>();
+		Optional<UserEntity> optionalUser = userDao.findById(userId);
+		if(!optionalUser.isPresent())
+		{
+			throw new UserNotFoundException("User not found");
+		}
+		else
+		{
+			List<BookingEntity> bookings = bookingDao.findByUserUserId(userId);
+			if(!bookings.isEmpty())
+			{
+				for(BookingEntity b : bookings)
+				{
+					List<String> seatNums = new ArrayList<>();
+					List<BookedSeatsEntity> seats = b.getBookedSeats();
+					for(BookedSeatsEntity bs : seats)
+					{
+						seatNums.add(bs.getSeat().getSeatNo());
+					}
+					
+					bookingDetails = new UserBookingDto(b.getBookingId(), 
+														b.getShow().getShowId(), 
+														b.getTotalAmt(), 
+														seatNums, 
+														b.getPaymentStatus(), 
+														b.getBookingStatus(), 
+														b.getCreatedAt());
+					
+					bookingList.add(bookingDetails);
+				}
+			}
+		}
+		
+		return bookingList;
 	}
 
 }
