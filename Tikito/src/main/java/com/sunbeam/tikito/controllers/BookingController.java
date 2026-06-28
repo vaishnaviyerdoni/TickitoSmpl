@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sunbeam.tikito.dto.AllBookingsDto;
 import com.sunbeam.tikito.dto.CancelTicketDto;
 import com.sunbeam.tikito.dto.TicketBookedDto;
 import com.sunbeam.tikito.dto.TicketBookingDto;
@@ -53,5 +54,11 @@ public class BookingController
 		List<UserBookingDto> userDetailsList = ser.getAllBookingsByUser(userId);
 		return Resp.success(userDetailsList);
 	}
-
+	
+	@GetMapping("/getByShowId/{showId}")
+	public Resp<?> getAllBookingByShow(@PathVariable long showId)
+	{
+		List<AllBookingsDto> allBookings = ser.getAllBookingsByShow(showId);
+		return Resp.success(allBookings);
+	}
 }

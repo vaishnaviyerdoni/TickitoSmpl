@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sunbeam.tikito.enums.BookingStatus;
 import com.sunbeam.tikito.enums.PaymentStatus;
 import jakarta.persistence.Column;
@@ -47,6 +48,7 @@ public class BookingEntity
 	@JoinColumn(name="show_id", nullable=false)
 	private ShowEntity show;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy="booking")
 	private List<BookedSeatsEntity> bookedSeats;
 	

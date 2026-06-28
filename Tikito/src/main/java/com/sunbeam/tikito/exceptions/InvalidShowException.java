@@ -1,10 +1,10 @@
 package com.sunbeam.tikito.exceptions;
 
-public class ShowNotFoundException extends RuntimeException
+public class InvalidShowException extends RuntimeException
 {
 	private static final long serialVersionUID = 1L;
 
-	public ShowNotFoundException(String message)
+	public InvalidShowException(String message)
 	{
 		super(message);
 	}
