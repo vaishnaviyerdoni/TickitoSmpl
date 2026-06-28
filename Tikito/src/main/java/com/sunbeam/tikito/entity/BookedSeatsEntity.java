@@ -1,6 +1,9 @@
 package com.sunbeam.tikito.entity;
 
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,6 +40,7 @@ public class BookedSeatsEntity
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long bookedSeatsId;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="booking_id", nullable=false)
 	private BookingEntity booking;
