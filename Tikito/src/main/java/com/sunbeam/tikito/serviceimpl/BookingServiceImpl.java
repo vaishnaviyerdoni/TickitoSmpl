@@ -302,6 +302,8 @@ public class BookingServiceImpl implements BookingService
 		for(BookingEntity b : bookings)
 		{
 			AllBookingsDto dto = mapper.map(b, AllBookingsDto.class);
+			dto.setShowId(showId);
+			dto.setUserId(b.getUser().getUserId());
 			dtos.add(dto);
 		}
 		
