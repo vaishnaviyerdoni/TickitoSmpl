@@ -3,6 +3,7 @@ package com.sunbeam.tikito.entity;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -49,6 +50,7 @@ public class BookedSeatsEntity
 	@JoinColumn(name="seat_id", nullable=false)
 	private SeatEntity seat;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="show_id", nullable=false)
 	private ShowEntity show;

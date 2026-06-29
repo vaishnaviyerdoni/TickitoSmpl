@@ -19,8 +19,8 @@ import lombok.Setter;
 public class AllBookingsDto 
 {
 	private Long bookingId;
-	private UserEntity user;
-	private ShowEntity show;
+	private long userId;
+	private long showId;
 	private List<BookedSeatsEntity> bookedSeats;
 	private double totalAmt;
 	private PaymentStatus paymentStatus;
